@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TurboWarp Live – Datenschutz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: schmale Lesespalte, links ein ruhiges Inhaltsverzeichnis (ab 900px sticky). */
+:root{
+  --bg:#fbfbfa;
+  --surface:#ffffff;
+  --ink:#1b1c1e;
+  --muted:#6b6d72;
+  --line:#e6e5e2;
+  --accent:#d9480f;
+  --font-body:"Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:"Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121314; --surface:#18191b; --ink:#e9e9e7; --muted:#9a9ca1; --line:#2a2b2e; --accent:#ff7a3d;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121314; --surface:#18191b; --ink:#e9e9e7; --muted:#9a9ca1; --line:#2a2b2e; --accent:#ff7a3d;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 var(--font-body);}
+a{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+a:hover{text-decoration-color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header.top{border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:56px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;letter-spacing:-.01em}
+.mark{width:18px;height:18px;border-radius:5px;background:var(--accent);position:relative}
+.mark::after{content:"";position:absolute;inset:5px;border-radius:2px;background:var(--bg)}
+.lang{display:flex;border:1px solid var(--line);border-radius:7px;padding:2px;gap:2px}
+.lang button{font:500 12px/1 var(--font-mono);color:var(--muted);background:none;border:0;padding:6px 9px;border-radius:5px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 0 0 1px var(--line)}
+
+.grid{display:grid;grid-template-columns:1fr;gap:40px;padding:48px 0 80px}
+@media (min-width:900px){.grid{grid-template-columns:200px minmax(0,1fr)}}
+nav.toc{display:none}
+@media (min-width:900px){
+  nav.toc{display:block;position:sticky;top:32px;align-self:start}
+}
+.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:2px;counter-reset:t}
+.toc li{counter-increment:t}
+.toc a{display:flex;gap:10px;padding:5px 0;font-size:13.5px;color:var(--muted);text-decoration:none}
+.toc a::before{content:counter(t,decimal-leading-zero);font:400 12px/1.9 var(--font-mono);color:var(--line)}
+.toc a:hover{color:var(--ink)}
+
+main{max-width:66ch}
+.kicker{font:500 12px/1 var(--font-mono);color:var(--muted);letter-spacing:.02em;margin:0 0 14px}
+h1{font-size:clamp(28px,4.2vw,38px);line-height:1.15;letter-spacing:-.025em;font-weight:600;margin:0 0 14px;text-wrap:balance}
+.lead{color:var(--muted);font-size:17px;margin:0 0 32px}
+
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden;margin:0 0 48px}
+.fact{padding:14px 16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);margin:-0 -1px -1px 0}
+.fact b{display:block;font-weight:500;font-size:14px}
+.fact span{font-size:13px;color:var(--muted)}
+.fact i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:8px;vertical-align:2px}
+
+section{padding:28px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0;padding-top:0}
+h2{display:flex;gap:12px;align-items:baseline;font-size:18px;font-weight:600;letter-spacing:-.01em;margin:0 0 10px}
+h2 .n{font:400 12px var(--font-mono);color:var(--muted)}
+p{margin:0 0 12px}
+ul{margin:0 0 12px;padding-left:18px}
+li{margin:4px 0}
+li::marker{color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin:6px 0 12px}
+.tbl{overflow-x:auto}
+th,td{text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 12px var(--font-mono);color:var(--muted);letter-spacing:.02em}
+td:first-child{font-weight:500;white-space:nowrap}
+code{font:400 13px var(--font-mono);background:var(--surface);border:1px solid var(--line);padding:1px 5px;border-radius:4px}
+
+.contact{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:6px}
+.copy{font:500 12px var(--font-mono);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:6px 10px;cursor:pointer}
+.copy:hover{border-color:var(--muted)}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding-top:20px;padding-bottom:28px}
+
+html[lang="de"] [data-l="en"], html[lang="en"] [data-l="de"]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap bar">
+    <div class="brand"><span class="mark" aria-hidden="true"></span>TurboWarp Live</div>
+    <div class="lang" role="group" aria-label="Sprache / Language">
+      <button id="btn-de" type="button" aria-pressed="true">DE</button>
+      <button id="btn-en" type="button" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap grid">
+  <nav class="toc" aria-label="Inhalt">
+    <ol data-l="de">
+      <li><a href="#daten">Welche Daten</a></li>
+      <li><a href="#zweck">Wofür</a></li>
+      <li><a href="#speicherung">Speicherung</a></li>
+      <li><a href="#weitergabe">Weitergabe</a></li>
+      <li><a href="#berechtigungen">Berechtigungen</a></li>
+      <li><a href="#kinder">Schüler und Kinder</a></li>
+      <li><a href="#rechte">Deine Rechte</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ol>
+    <ol data-l="en">
+      <li><a href="#daten">What data</a></li>
+      <li><a href="#zweck">Purpose</a></li>
+      <li><a href="#speicherung">Storage</a></li>
+      <li><a href="#weitergabe">Sharing</a></li>
+      <li><a href="#berechtigungen">Permissions</a></li>
+      <li><a href="#kinder">Students and children</a></li>
+      <li><a href="#rechte">Your rights</a></li>
+      <li><a href="#kontakt">Contact</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <p class="kicker"><span data-l="de">Datenschutzerklärung · Stand 19.11.2026</span><span data-l="en">Privacy policy · Updated 19 Nov 2026</span></p>
+    <h1><span data-l="de">So geht TurboWarp Live mit deinen Daten um</span><span data-l="en">How TurboWarp Live handles your data</span></h1>
+    <p class="lead">
+      <span data-l="de">TurboWarp Live ist eine Browser-Erweiterung, mit der mehrere Personen gleichzeitig am selben TurboWarp- oder Scratch-Projekt arbeiten. Dafür wird nur übertragen, was für die Live-Zusammenarbeit nötig ist.</span>
+      <span data-l="en">TurboWarp Live is a browser extension that lets several people work on the same TurboWarp or Scratch project at the same time. It only transmits what live collaboration needs.</span>
+    </p>
+
+    <div class="facts" data-l="de">
+      <div class="fact"><b><i></i>Kein Konto</b><span>Keine Registrierung, kein Login</span></div>
+      <div class="fact"><b><i></i>Kein Tracking</b><span>Keine Analyse, keine Werbung</span></div>
+      <div class="fact"><b><i></i>Nur live</b><span>Daten werden weitergeleitet, nicht archiviert</span></div>
+      <div class="fact"><b><i></i>Kein Verkauf</b><span>Keine Weitergabe an Dritte</span></div>
+    </div>
+    <div class="facts" data-l="en">
+      <div class="fact"><b><i></i>No account</b><span>No sign-up, no login</span></div>
+      <div class="fact"><b><i></i>No tracking</b><span>No analytics, no ads</span></div>
+      <div class="fact"><b><i></i>Live only</b><span>Data is relayed, not archived</span></div>
+      <div class="fact"><b><i></i>Never sold</b><span>Not shared with third parties</span></div>
+    </div>
+
+    <section id="daten">
+      <h2><span class="n">01</span><span data-l="de">Welche Daten verarbeitet werden</span><span data-l="en">What data is processed</span></h2>
+      <div class="tbl">
+        <table data-l="de">
+          <thead><tr><th>Daten</th><th>Wann</th></tr></thead>
+          <tbody>
+            <tr><td>Projektinhalte</td><td>Blöcke, Figuren, Kostüme und Änderungen am Projekt, solange du in einer Live-Sitzung bist</td></tr>
+            <tr><td>Cursor und Auswahl</td><td>Position deines Mauszeigers im Editor, damit andere sehen, wo du arbeitest</td></tr>
+            <tr><td>Sitzungscode</td><td>Der Code, mit dem du einer Sitzung beitrittst oder sie teilst</td></tr>
+            <tr><td>Anzeigename</td><td>Der Name, den du selbst eingibst und den die anderen in der Sitzung sehen</td></tr>
+            <tr><td>Technische Verbindungsdaten</td><td>IP-Adresse und Verbindungszeit, die beim Aufbau jeder Internetverbindung anfallen</td></tr>
+          </tbody>
+        </table>
+        <table data-l="en">
+          <thead><tr><th>Data</th><th>When</th></tr></thead>
+          <tbody>
+            <tr><td>Project content</td><td>Blocks, sprites, costumes and project changes while you are in a live session</td></tr>
+            <tr><td>Cursor and selection</td><td>Your pointer position in the editor, so others can see where you are working</td></tr>
+            <tr><td>Session code</td><td>The code used to join or share a session</td></tr>
+            <tr><td>Display name</td><td>The name you enter yourself, shown to others in the session</td></tr>
+            <tr><td>Connection data</td><td>IP address and connection time, which every internet connection involves</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p data-l="de">Ausserhalb einer Live-Sitzung überträgt die Erweiterung nichts.</p>
+      <p data-l="en">Outside a live session, the extension transmits nothing.</p>
+    </section>
+
+    <section id="zweck">
+      <h2><span class="n">02</span><span data-l="de">Wofür die Daten genutzt werden</span><span data-l="en">What the data is used for</span></h2>
+      <p data-l="de">Ausschliesslich dafür, Änderungen und Cursor in Echtzeit zwischen den Personen derselben Sitzung zu synchronisieren. Die Daten werden nicht für Werbung, Profilbildung, Kreditwürdigkeitsprüfungen oder sonstige Zwecke verwendet, die nichts mit dieser Funktion zu tun haben.</p>
+      <p data-l="en">Only to sync changes and cursors in real time between the people in the same session. The data is never used for advertising, profiling, creditworthiness checks or any purpose unrelated to this feature.</p>
+    </section>
+
+    <section id="speicherung">
+      <h2><span class="n">03</span><span data-l="de">Speicherung</span><span data-l="en">Storage</span></h2>
+      <ul data-l="de">
+        <li>Der Server leitet Projektänderungen und Cursor nur an die anderen Teilnehmenden weiter. Ist die Sitzung beendet, werden diese Daten verworfen.</li>
+        <li>Dein Anzeigename und deine Einstellungen werden lokal in deinem Browser gespeichert (<code>chrome.storage</code>). Du löschst sie, indem du die Erweiterung entfernst.</li>
+        <li>Dein Projekt selbst bleibt dort, wo du es speicherst: auf deinem Computer, bei TurboWarp oder bei Scratch.</li>
+      </ul>
+      <ul data-l="en">
+        <li>The server only relays project changes and cursors to the other participants. Once the session ends, this data is discarded.</li>
+        <li>Your display name and settings are stored locally in your browser (<code>chrome.storage</code>). Removing the extension deletes them.</li>
+        <li>Your project itself stays where you save it: on your computer, on TurboWarp or on Scratch.</li>
+      </ul>
+    </section>
+
+    <section id="weitergabe">
+      <h2><span class="n">04</span><span data-l="de">Weitergabe</span><span data-l="en">Sharing</span></h2>
+      <p data-l="de">Sichtbar sind die Daten nur für die Personen, die mit demselben Code in deiner Sitzung sind. Sie werden weder verkauft noch an Dritte weitergegeben. Ausgenommen ist nur, wenn eine gesetzliche Pflicht dazu besteht.</p>
+      <p data-l="en">The data is only visible to people in your session with the same code. It is never sold or passed on to third parties, except where required by law.</p>
+    </section>
+
+    <section id="berechtigungen">
+      <h2><span class="n">05</span><span data-l="de">Berechtigungen der Erweiterung</span><span data-l="en">Extension permissions</span></h2>
+      <ul data-l="de">
+        <li><b>Zugriff auf turbowarp.org und scratch.mit.edu</b>: Damit die Erweiterung sich im Editor einblenden und Änderungen lesen und anwenden kann. Andere Websites werden nicht gelesen.</li>
+        <li><b>Speicher</b>: Für Anzeigename und Einstellungen auf deinem Gerät.</li>
+      </ul>
+      <ul data-l="en">
+        <li><b>Access to turbowarp.org and scratch.mit.edu</b>: So the extension can appear in the editor and read and apply changes. No other websites are read.</li>
+        <li><b>Storage</b>: For your display name and settings on your device.</li>
+      </ul>
+    </section>
+
+    <section id="kinder">
+      <h2><span class="n">06</span><span data-l="de">Schüler und Kinder</span><span data-l="en">Students and children</span></h2>
+      <p data-l="de">TurboWarp Live wird auch im Unterricht genutzt. Ein echter Name ist nicht nötig, ein Spitzname reicht. Bitte gib im Anzeigenamen keine persönlichen Angaben wie den vollen Namen, die Adresse oder die Schule an.</p>
+      <p data-l="en">TurboWarp Live is also used in class. A real name is not required, a nickname is enough. Please do not put personal details such as your full name, address or school in the display name.</p>
+    </section>
+
+    <section id="rechte">
+      <h2><span class="n">07</span><span data-l="de">Deine Rechte</span><span data-l="en">Your rights</span></h2>
+      <p data-l="de">Nach dem Schweizer Datenschutzgesetz (DSG) und, soweit anwendbar, der DSGVO kannst du Auskunft über deine Daten verlangen und ihre Berichtigung oder Löschung fordern. Da nichts dauerhaft gespeichert wird, gibt es in der Regel nichts zu löschen. Schreib mir trotzdem, wenn du eine Frage hast.</p>
+      <p data-l="en">Under the Swiss Federal Act on Data Protection (FADP) and, where applicable, the GDPR, you can request access to your data and ask for it to be corrected or deleted. Since nothing is stored permanently, there is usually nothing to delete. Feel free to write to me with any questions.</p>
+    </section>
+
+    <section id="kontakt">
+      <h2><span class="n">08</span><span data-l="de">Kontakt</span><span data-l="en">Contact</span></h2>
+      <p data-l="de">Verantwortlich: Leander Kyvelos, Basel, Schweiz</p>
+      <p data-l="en">Responsible: Leander Kyvelos, Basel, Switzerland</p>
+      <div class="contact">
+        <a id="mail" href="mailto:leander.kyvelos@gmail.com">leander.kyvelos@gmail.com</a>
+        <button class="copy" id="copy" type="button"><span data-l="de">Kopieren</span><span data-l="en">Copy</span></button>
+      </div>
+      <p data-l="de" style="color:var(--muted);font-size:14px;margin-top:14px">Wenn sich an der Datenverarbeitung etwas ändert, wird diese Seite aktualisiert und das Datum oben angepasst.</p>
+      <p data-l="en" style="color:var(--muted);font-size:14px;margin-top:14px">If data handling changes, this page will be updated and the date above adjusted.</p>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>TurboWarp Live</span>
+    <span data-l="de">Nicht mit TurboWarp oder dem Scratch-Team verbunden.</span>
+    <span data-l="en">Not affiliated with TurboWarp or the Scratch Team.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement, de=document.getElementById('btn-de'), en=document.getElementById('btn-en');
+  function set(l){
+    root.lang=l; de.setAttribute('aria-pressed',l==='de'); en.setAttribute('aria-pressed',l==='en');
+    try{localStorage.setItem('twl-lang',l)}catch(e){}
+  }
+  var saved=null; try{saved=localStorage.getItem('twl-lang')}catch(e){}
+  set(saved||((navigator.language||'de').slice(0,2)==='de'?'de':'en'));
+  de.onclick=function(){set('de')}; en.onclick=function(){set('en')};
+  var btn=document.getElementById('copy');
+  btn.onclick=function(){
+    var orig=btn.innerHTML;
+    navigator.clipboard.writeText('leander.kyvelos@gmail.com').then(function(){
+      btn.textContent=root.lang==='de'?'Kopiert':'Copied';
+      setTimeout(function(){btn.innerHTML=orig},1400);
+    }).catch(function(){});
+  };
+})();
+</script>
+</body>
+</html>
